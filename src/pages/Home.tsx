@@ -1,10 +1,11 @@
 import React from 'react';
+import NormalForm from '../components/NormalForm/NormalForm';
 
 const Home = () => {
     return (
-        <div>
-            Home page
-        </div>
+      <div>
+        <NormalForm double={true}></NormalForm>
+      </div>
     );
 };
 

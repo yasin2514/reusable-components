@@ -8,7 +8,7 @@ import App from "../App";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <MainLayout />,
     children: [
       {
         index: true,
