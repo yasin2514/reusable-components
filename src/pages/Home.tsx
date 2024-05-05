@@ -1,9 +1,8 @@
-import React from 'react';
 import NormalForm from '../components/NormalForm/NormalForm';
 
 const Home = () => {
     return (
-      <div>
+      <div className='md:py-5'>
         <NormalForm double={true}></NormalForm>
       </div>
     );
