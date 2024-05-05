@@ -1,20 +1,25 @@
 import { useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../ui/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignUpSchema } from "./validator";
 
 const NormalForm = ({ double }: { double: boolean }) => {
   const {
     handleSubmit,
     register,
-    watch,
     reset,
     formState: { errors },
-  } = useForm();
+    watch,
+  } = useForm({
+    resolver: zodResolver(SignUpSchema),
+  });
 
   const onSubmit = (data) => {
     reset();
     console.log(data);
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -36,10 +41,12 @@ const NormalForm = ({ double }: { double: boolean }) => {
             type="text"
             id="name"
             placeholder="Enter Your Name"
-            {...register("name", { required: true })}
+            {...register("name")}
           />
           {errors.name && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.name?.message}
+            </span>
           )}
         </div>
         <div className="w-full max-w-md">
@@ -50,10 +57,12 @@ const NormalForm = ({ double }: { double: boolean }) => {
             type="email"
             id="email"
             placeholder="Enter Your Email"
-            {...register("email", { required: true })}
+            {...register("email")}
           />
           {errors.email && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.email?.message}
+            </span>
           )}
         </div>
         <div className="w-full max-w-md">
@@ -64,10 +73,12 @@ const NormalForm = ({ double }: { double: boolean }) => {
             type="password"
             id="password"
             placeholder="Enter Your Password"
-            {...register("password", { required: true })}
+            {...register("password")}
           />
           {errors.password && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.password?.message}
+            </span>
           )}
         </div>
         <div className="w-full max-w-md">
@@ -78,10 +89,12 @@ const NormalForm = ({ double }: { double: boolean }) => {
             type="password"
             id="re-password"
             placeholder="Enter Your Password Again"
-            {...register("rePassword", { required: true })}
+            {...register("rePassword")}
           />
           {errors.rePassword && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.rePassword?.message}
+            </span>
           )}
         </div>
         {/* radio button section start */}
@@ -93,7 +106,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="radio"
                 id="islam"
                 value="Islam"
-                {...register("religion", { required: true })}
+                {...register("religion")}
               />
               <label htmlFor="islam">Islam</label>
             </div>
@@ -102,7 +115,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="radio"
                 id="christian"
                 value="Christian"
-                {...register("religion", { required: true })}
+                {...register("religion")}
               />
               <label htmlFor="christian">Christian</label>
             </div>
@@ -111,7 +124,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="radio"
                 id="hindus"
                 value="Hindus"
-                {...register("religion", { required: true })}
+                {...register("religion")}
               />
               <label htmlFor="hindus">Hindus</label>
             </div>
@@ -120,13 +133,15 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="radio"
                 id="others"
                 value="Others"
-                {...register("religion", { required: true })}
+                {...register("religion")}
               />
               <label htmlFor="others">Others</label>
             </div>
           </div>
           {errors.religion && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.religion?.message}
+            </span>
           )}
         </div>
         {/* checkbox section start */}
@@ -138,7 +153,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="checkbox"
                 id="reading-books"
                 value="Reading Books"
-                {...register("hobby", { required: true })}
+                {...register("hobby")}
               />
               <label htmlFor="reading-books">Reading Books</label>
             </div>
@@ -147,7 +162,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="checkbox"
                 id="swimming"
                 value="Swimming"
-                {...register("hobby", { required: true })}
+                {...register("hobby")}
               />
               <label htmlFor="swimming">Swimming</label>
             </div>
@@ -156,13 +171,15 @@ const NormalForm = ({ double }: { double: boolean }) => {
                 type="checkbox"
                 id="traveling"
                 value="Traveling"
-                {...register("hobby", { required: true })}
+                {...register("hobby")}
               />
               <label htmlFor="traveling">Traveling</label>
             </div>
           </div>
           {errors.hobby && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.hobby?.message}
+            </span>
           )}
         </div>
         {/* select section start */}
@@ -170,7 +187,7 @@ const NormalForm = ({ double }: { double: boolean }) => {
           <label htmlFor="country" className="block">
             Choose Your Country
           </label>
-          <select id="country" {...register("country", { required: true })}>
+          <select id="country" {...register("country")}>
             <option value="Bangladesh">Bangladesh</option>
             <option value="India">India</option>
             <option value="Pakistan">Pakistan</option>
@@ -178,7 +195,9 @@ const NormalForm = ({ double }: { double: boolean }) => {
             <option value="Bhutan">Bhutan</option>
           </select>
           {errors.country && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.country?.message}
+            </span>
           )}
         </div>
         {/* text area section start */}
@@ -186,12 +205,11 @@ const NormalForm = ({ double }: { double: boolean }) => {
           <label htmlFor="textarea" className="block">
             Write Something
           </label>
-          <textarea
-            id="textarea"
-            {...register("textarea", { required: true })}
-          ></textarea>
+          <textarea id="textarea" {...register("textarea")}></textarea>
           {errors.textarea && (
-            <span className="text-red-500 text-xs">This field is required</span>
+            <span className="text-red-500 text-xs">
+              {errors?.textarea?.message}
+            </span>
           )}
         </div>
       </div>
