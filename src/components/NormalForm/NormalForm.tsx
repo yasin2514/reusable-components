@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import cn from "../../utils/cn";
 import Button from "../ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignUpSchema } from "./validator";
+import { SignUpSchema, TSignUpSchema } from "./validator";
 
 const NormalForm = ({ double }: { double: boolean }) => {
   const {
@@ -11,15 +11,16 @@ const NormalForm = ({ double }: { double: boolean }) => {
     reset,
     formState: { errors },
     watch,
-  } = useForm({
+  } = useForm<TSignUpSchema>({
     resolver: zodResolver(SignUpSchema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FieldValues) => {
     reset();
     console.log(data);
   };
 
+  console.log(watch("name"));
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
