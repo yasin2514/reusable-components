@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { SignUpSchema } from "../validator/form.validator";
-import { FieldValues, SubmitHandler, UseFormRegisterReturn } from "react-hook-form";
+import {
+  FieldValues,
+  SubmitHandler,
+  UseFormRegisterReturn,
+} from "react-hook-form";
 import { ReactNode } from "react";
 
 export type TSignUpSchema = z.infer<typeof SignUpSchema>;
@@ -8,7 +12,7 @@ export type TSignUpSchema = z.infer<typeof SignUpSchema>;
 export type TFromProps = {
   children: ReactNode;
   double: boolean;
-  onSubmit:SubmitHandler<FieldValues>
+  onSubmit: SubmitHandler<FieldValues>;
 };
 export type TInputProps = {
   type?: string;
@@ -24,4 +28,21 @@ export type TFormSectionProps = {
 
 export type TFormContextProps = {
   double: boolean;
+};
+
+export type TInnerInputProps = {
+  value: string;
+};
+
+export type TInnerSectionContextProps = {
+  type: "radio" | "checkbox";
+  register: UseFormRegisterReturn;
+};
+
+export type TInnerSectionProps = {
+  children: ReactNode;
+  type: "radio" | "checkbox";
+  label: string;
+  register: UseFormRegisterReturn;
+  errors: any;
 };

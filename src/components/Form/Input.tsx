@@ -1,5 +1,10 @@
 import { createContext, useContext } from "react";
-import { TInputProps } from "../../types/types";
+import {
+  TInnerInputProps,
+  TInnerSectionContextProps,
+  TInnerSectionProps,
+  TInputProps,
+} from "../../types/types";
 
 export const Input = ({
   label,
@@ -31,8 +36,18 @@ export const Input = ({
   );
 };
 
-const InnerSectionContext = createContext(null);
-export const InnerSection = ({ register, errors, children, type, label }) => {
+
+
+const InnerSectionContext = createContext<TInnerSectionContextProps | null>(
+  null
+);
+export const InnerSection = ({
+  register,
+  errors,
+  children,
+  type,
+  label,
+}: TInnerSectionProps) => {
   const { name } = register;
   return (
     <InnerSectionContext.Provider value={{ register, type }}>
@@ -50,8 +65,12 @@ export const InnerSection = ({ register, errors, children, type, label }) => {
 };
 Input.InnerSection = InnerSection;
 
-export const InnerInput = ({ value }) => {
-  const { register, type } = useContext(InnerSectionContext);
+
+
+export const InnerInput = ({ value }: TInnerInputProps) => {
+  const { register, type } = useContext(
+    InnerSectionContext
+  ) as TInnerSectionContextProps;
   const random = Math.random().toString(36).substring(7);
   const id = value.concat(random).toLowerCase();
   return (
