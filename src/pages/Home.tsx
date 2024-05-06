@@ -1,5 +1,11 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Form, FormSection, FormSubmit, Input } from "../components/Form";
+import {
+  Form,
+  FormSection,
+  FormSubmit,
+  InnerSection,
+  Input,
+} from "../components/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "../validator/form.validator";
 import { TSignUpSchema } from "../types/types";
@@ -45,6 +51,19 @@ const Home = () => {
             register={register("confirmPassword")}
             errors={errors}
           />
+          <Input.InnerSection type={"radio"} register={register("religion")} errors={errors} label={"Religion"}>
+            <InnerSection.Input value={"Islam"} />
+            <InnerSection.Input value={"Christian"} />
+            <InnerSection.Input value={"Hindus"} />
+            <InnerSection.Input value={"Others"} />
+          </Input.InnerSection>
+          
+          <Input.InnerSection type={"checkbox"} register={register("hobby")} errors={errors} label={"Hobby"}>
+            <InnerSection.Input value={"Reading Book"} />
+            <InnerSection.Input value={"Swimming"} />
+            <InnerSection.Input value={"Traveling"} />
+            <InnerSection.Input value={"Others"} />
+          </Input.InnerSection>
         </FormSection>
         <FormSubmit />
       </Form>
