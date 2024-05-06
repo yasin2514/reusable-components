@@ -1,13 +1,27 @@
 import { z } from "zod";
 import { SignUpSchema } from "../validator/form.validator";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { FieldValues, SubmitHandler, UseFormRegisterReturn } from "react-hook-form";
+import { ReactNode } from "react";
 
 export type TSignUpSchema = z.infer<typeof SignUpSchema>;
 
+export type TFromProps = {
+  children: ReactNode;
+  double: boolean;
+  onSubmit:SubmitHandler<FieldValues>
+};
 export type TInputProps = {
   type?: string;
   label?: string;
   register: UseFormRegisterReturn;
   errors: any;
   placeholder?: string;
+};
+
+export type TFormSectionProps = {
+  children: ReactNode;
+};
+
+export type TFormContextProps = {
+  double: boolean;
 };

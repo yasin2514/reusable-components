@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Form, FormSection, FormSubmit, Input } from "../components/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "../validator/form.validator";
@@ -13,7 +13,7 @@ const Home = () => {
     resolver: zodResolver(SignUpSchema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data : FieldValues) => {
     console.log(data);
   };
   return (
