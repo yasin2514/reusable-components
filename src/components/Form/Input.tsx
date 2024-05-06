@@ -4,8 +4,10 @@ import {
   TInnerSectionContextProps,
   TInnerSectionProps,
   TInputProps,
+  TTextAreaProps,
 } from "../../types/types";
 
+// for the Input component
 export const Input = ({
   label,
   register,
@@ -15,14 +17,16 @@ export const Input = ({
 }: TInputProps) => {
   const { name } = register;
   const { placeholder } = rest;
+  const random = Math.random().toString(36).substring(7);
+  const id = name?.concat(random).toLowerCase();
   return (
     <div className=" w-full max-w-md">
-      <label htmlFor={name} className="block mb-0.5">
+      <label htmlFor={id} className="block mb-0.5">
         {label}
       </label>
       <input
         type={type ? type : "text"}
-        id={name}
+        id={id}
         {...register}
         placeholder={
           placeholder || (label ? `Enter Your ${label}` : `Enter your ${name}`)
@@ -36,8 +40,7 @@ export const Input = ({
   );
 };
 
-
-
+// for the radio button and checkbox component
 const InnerSectionContext = createContext<TInnerSectionContextProps | null>(
   null
 );
@@ -65,8 +68,7 @@ export const InnerSection = ({
 };
 Input.InnerSection = InnerSection;
 
-
-
+// for the radio button and checkbox  component
 export const InnerInput = ({ value }: TInnerInputProps) => {
   const { register, type } = useContext(
     InnerSectionContext
@@ -81,3 +83,22 @@ export const InnerInput = ({ value }: TInnerInputProps) => {
   );
 };
 InnerSection.Input = InnerInput;
+
+// for the text area component
+export const TextArea = ({ label, register, ...rest }:TTextAreaProps) => {
+  const { name } = register;
+  const random = Math.random().toString(36).substring(7);
+  const id = name?.concat(random).toLowerCase();
+  return (
+    <div className="w-full max-w-md">
+      <label htmlFor={id} className="block mb-0.5">
+        {label}
+      </label>
+      <textarea
+        id={id}
+        {...register}
+        {...rest}
+      ></textarea>
+    </div>
+  );
+};

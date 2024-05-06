@@ -46,3 +46,9 @@ export type TInnerSectionProps = {
   register: UseFormRegisterReturn;
   errors: any;
 };
+
+export type TTextAreaProps = {
+  label: string;
+  register: UseFormRegisterReturn;
+  placeholder?: string;
+};

@@ -15,7 +15,7 @@ export const SignUpSchema = z
     religion: z.string().optional(),
     hobby: z.array(z.string()).optional(),
     country: z.string().optional(),
-    textarea: z.string().optional(),
+    message: z.string().optional(),
   })
   .superRefine(({ password, confirmPassword }, ctx) => {
     if (password !== confirmPassword) {

@@ -5,6 +5,7 @@ import {
   FormSubmit,
   InnerSection,
   Input,
+  TextArea,
 } from "../components/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "../validator/form.validator";
@@ -51,19 +52,34 @@ const Home = () => {
             register={register("confirmPassword")}
             errors={errors}
           />
-          <Input.InnerSection type={"radio"} register={register("religion")} errors={errors} label={"Religion"}>
+          <Input.InnerSection
+            type={"radio"}
+            register={register("religion")}
+            errors={errors}
+            label={"Religion"}
+          >
             <InnerSection.Input value={"Islam"} />
             <InnerSection.Input value={"Christian"} />
             <InnerSection.Input value={"Hindus"} />
             <InnerSection.Input value={"Others"} />
           </Input.InnerSection>
-          
-          <Input.InnerSection type={"checkbox"} register={register("hobby")} errors={errors} label={"Hobby"}>
+          <Input.InnerSection
+            type={"checkbox"}
+            register={register("hobby")}
+            errors={errors}
+            label={"Hobby"}
+          >
             <InnerSection.Input value={"Reading Book"} />
             <InnerSection.Input value={"Swimming"} />
             <InnerSection.Input value={"Traveling"} />
             <InnerSection.Input value={"Others"} />
           </Input.InnerSection>
+
+          <TextArea
+            label={"Enter Message"}
+            placeholder={"Write here"}
+            register={register("message")}
+          />
         </FormSection>
         <FormSubmit />
       </Form>
