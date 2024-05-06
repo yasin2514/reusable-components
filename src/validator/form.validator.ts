@@ -9,18 +9,20 @@ export const SignUpSchema = z
       .string()
       .min(1, { message: "Password is Required" })
       .min(6, { message: "Password must be at least 6 characters" }),
-    rePassword: z.string().min(1, { message: "Confirm Password is Required" }),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is Required" }),
     religion: z.string().optional(),
     hobby: z.array(z.string()).optional(),
     country: z.string().optional(),
     textarea: z.string().optional(),
   })
-  .superRefine(({ password, rePassword }, ctx) => {
-    if (password !== rePassword) {
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Passwords do not match",
-        path: ["rePassword"],
+        path: ["confirmPassword"],
       });
     }
   });
