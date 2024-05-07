@@ -52,3 +52,10 @@ export type TTextAreaProps = {
   register: UseFormRegisterReturn;
   placeholder?: string;
 };
+
+export type TSelectProps = {
+  register: UseFormRegisterReturn;
+  errors: any;
+  label: string;
+  options: string[];
+};

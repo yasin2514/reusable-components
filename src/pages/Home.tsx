@@ -5,6 +5,7 @@ import {
   FormSubmit,
   InnerSection,
   Input,
+  Select,
   TextArea,
 } from "../components/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -74,6 +75,20 @@ const Home = () => {
             <InnerSection.Input value={"Traveling"} />
             <InnerSection.Input value={"Others"} />
           </Input.InnerSection>
+
+          <Select
+            register={register("country")}
+            errors={errors}
+            label={"Choose Your Country"}
+            options={[
+              "Bangladesh",
+              "India",
+              "USA",
+              "UK",
+              "Canada",
+              "Australia",
+            ]}
+          />
 
           <TextArea
             label={"Enter Message"}

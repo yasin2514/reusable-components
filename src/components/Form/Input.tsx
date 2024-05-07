@@ -4,6 +4,7 @@ import {
   TInnerSectionContextProps,
   TInnerSectionProps,
   TInputProps,
+  TSelectProps,
   TTextAreaProps,
 } from "../../types/types";
 
@@ -69,7 +70,7 @@ export const InnerSection = ({
 Input.InnerSection = InnerSection;
 
 // for the radio button and checkbox  component
-export const InnerInput = ({ value }: TInnerInputProps) => {
+const InnerInput = ({ value }: TInnerInputProps) => {
   const { register, type } = useContext(
     InnerSectionContext
   ) as TInnerSectionContextProps;
@@ -85,7 +86,7 @@ export const InnerInput = ({ value }: TInnerInputProps) => {
 InnerSection.Input = InnerInput;
 
 // for the text area component
-export const TextArea = ({ label, register, ...rest }:TTextAreaProps) => {
+export const TextArea = ({ label, register, ...rest }: TTextAreaProps) => {
   const { name } = register;
   const random = Math.random().toString(36).substring(7);
   const id = name?.concat(random).toLowerCase();
@@ -94,11 +95,34 @@ export const TextArea = ({ label, register, ...rest }:TTextAreaProps) => {
       <label htmlFor={id} className="block mb-0.5">
         {label}
       </label>
-      <textarea
-        id={id}
-        {...register}
-        {...rest}
-      ></textarea>
+      <textarea id={id} {...register} {...rest}></textarea>
+    </div>
+  );
+};
+
+// for the select component
+export const Select = ({ register, errors, label, options }: TSelectProps) => {
+  const { name } = register;
+  const random = Math.random().toString(36).substring(7);
+  const id = name?.concat(random).toLowerCase();
+  const selectOption = options?.map((option: string, index: number) => {
+    return (
+      <option value={option} key={index}>
+        {option}
+      </option>
+    );
+  });
+  return (
+    <div className="w-full max-w-md">
+      <label htmlFor={id} className="block mb-0.5">
+        {label}
+      </label>
+      <select id={id} {...register}>
+        {selectOption}
+      </select>
+      {errors[name] && (
+        <span className="text-red-500 text-xs">{errors[name]?.message}</span>
+      )}
     </div>
   );
 };
