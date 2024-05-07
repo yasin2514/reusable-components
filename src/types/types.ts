@@ -59,3 +59,11 @@ export type TSelectProps = {
   label: string;
   options: string[];
 };
+
+export type TRadioAndCheckboxProps = {
+  label: string;
+  register: UseFormRegisterReturn;
+  errors: any;
+  options: string[];
+  type: "radio" | "checkbox";
+};

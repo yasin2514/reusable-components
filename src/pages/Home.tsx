@@ -3,7 +3,6 @@ import {
   Form,
   FormSection,
   FormSubmit,
-  InnerSection,
   Input,
   Select,
   TextArea,
@@ -53,7 +52,21 @@ const Home = () => {
             register={register("confirmPassword")}
             errors={errors}
           />
-          <Input.InnerSection
+          <Input.Radio
+            register={register("religion")}
+            label="Religion"
+            errors={errors}
+            type="radio"
+            options={["Islam", "Hindus", "Christian", "Others"]}
+          />
+          <Input.Checkbox
+            register={register("hobby")}
+            type="checkbox"
+            errors={errors}
+            label="Hobby"
+            options={["Reading Book", "Swimming", "Traveling", "Others"]}
+          />
+          {/* <Input.InnerSection
             type={"radio"}
             register={register("religion")}
             errors={errors}
@@ -74,7 +87,7 @@ const Home = () => {
             <InnerSection.Input value={"Swimming"} />
             <InnerSection.Input value={"Traveling"} />
             <InnerSection.Input value={"Others"} />
-          </Input.InnerSection>
+          </Input.InnerSection> */}
 
           <Select
             register={register("country")}
