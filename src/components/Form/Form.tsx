@@ -2,7 +2,7 @@ import { createContext } from "react";
 import cn from "../../utils/cn";
 import { TFormContextProps, TFromProps } from "../../types/types";
 
-export const FormContext = createContext<TFormContextProps|null>(null);
+export const FormContext = createContext<TFormContextProps | null>(null);
 export const Form = ({ children, double, onSubmit }: TFromProps) => {
   return (
     <FormContext.Provider value={{ double }}>
